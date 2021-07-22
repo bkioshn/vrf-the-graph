@@ -1,0 +1,47 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: VRFProvider
+    network: kovan
+    source:
+      address: "0xD1785fd50c2DBF77bF5F376ECc960BB0E9c19f14"
+      abi: VRFProvider
+      startBlock: 25038970
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - RelayProof
+        - DataRequest
+      abis:
+        - name: VRFProvider
+          file: VRFProvider/abis/VRFProvider.json
+      eventHandlers:
+        - event: RandomDataRelayed(address,string,uint64,bytes32,bytes32)
+          handler: handleRandomDataRelayed
+        - event: RandomDataRequested(address,string,uint64,bytes32,uint256)
+          handler: handleRandomDataRequested
+      file: VRFProvider/VRFProvider.wasm
+  - kind: ethereum/contract
+    name: VRFConsumer
+    network: kovan
+    source:
+      address: "0x7c7c4a5332F4fa485EfcbE32b67a969334fD5465"
+      abi: VRFConsumer
+      startBlock: 25038970
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - DataRequest
+      abis:
+        - name: VRFConsumer
+          file: VRFConsumer/abis/VRFConsumer.json
+      eventHandlers:
+        - event: RandomDataRequested(address,string,uint64,uint256)
+          handler: handleRandomDataRequested
+      file: VRFConsumer/VRFConsumer.wasm

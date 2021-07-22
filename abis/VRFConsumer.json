@@ -1,0 +1,77 @@
+[
+	{
+		"inputs": [{ "internalType": "contract IVRFProvider", "name": "_provider", "type": "address" }],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{ "indexed": false, "internalType": "string", "name": "seed", "type": "string" },
+			{ "indexed": false, "internalType": "uint64", "name": "time", "type": "uint64" },
+			{ "indexed": false, "internalType": "bytes32", "name": "result", "type": "bytes32" }
+		],
+		"name": "Consume",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{ "indexed": false, "internalType": "address", "name": "provider", "type": "address" },
+			{ "indexed": false, "internalType": "string", "name": "seed", "type": "string" },
+			{ "indexed": false, "internalType": "uint64", "name": "time", "type": "uint64" },
+			{ "indexed": false, "internalType": "uint256", "name": "bounty", "type": "uint256" }
+		],
+		"name": "RandomDataRequested",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{ "internalType": "string", "name": "seed", "type": "string" },
+			{ "internalType": "uint64", "name": "time", "type": "uint64" },
+			{ "internalType": "bytes32", "name": "result", "type": "bytes32" }
+		],
+		"name": "consume",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "latestResult",
+		"outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "latestSeed",
+		"outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "latestTime",
+		"outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "provider",
+		"outputs": [{ "internalType": "contract IVRFProvider", "name": "", "type": "address" }],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{ "internalType": "string", "name": "seed", "type": "string" },
+			{ "internalType": "uint64", "name": "time", "type": "uint64" }
+		],
+		"name": "requestRandomDataFromProvider",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	}
+]

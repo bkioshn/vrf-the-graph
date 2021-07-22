@@ -1,6 +1,23 @@
-type ExampleEntity @entity {
+# enum Status {
+#   PENDING
+#   REJECTED
+#   APPROVED
+# }
+
+type DataRequest @entity {
   id: ID!
-  count: BigInt!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
+  sender: Bytes
+  seed: String
+  time: BigInt
+  bounty: BigInt
+  status: Status
+  block: BigInt
+  # param: String
 }
+
+# type RelayProof @entity{
+#   id: ID!
+#   seed: String
+#   time: BigInt
+#   status: Status
+# }

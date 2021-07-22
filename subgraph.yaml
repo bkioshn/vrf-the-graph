@@ -1,29 +1,27 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
-dataSources:
+dataSources: 
   - kind: ethereum/contract
     name: VRFProvider
     network: kovan
     source:
       address: "0xD1785fd50c2DBF77bF5F376ECc960BB0E9c19f14"
       abi: VRFProvider
+      startBlock: 25038970
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - OwnershipTransferred
-        - RandomDataRelayed
-        - RandomDataRequested
+        - RelayProof
+        - DataRequest
       abis:
         - name: VRFProvider
           file: ./abis/VRFProvider.json
       eventHandlers:
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
         - event: RandomDataRelayed(address,string,uint64,bytes32,bytes32)
           handler: handleRandomDataRelayed
         - event: RandomDataRequested(address,string,uint64,bytes32,uint256)
           handler: handleRandomDataRequested
-      file: ./src/mapping.ts
+      file: ./src/mapping/provider.ts
