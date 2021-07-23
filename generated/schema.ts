@@ -110,23 +110,6 @@ export class DataRequest extends Entity {
     }
   }
 
-  get status(): string | null {
-    let value = this.get("status");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set status(value: string | null) {
-    if (value === null) {
-      this.unset("status");
-    } else {
-      this.set("status", Value.fromString(value as string));
-    }
-  }
-
   get block(): BigInt | null {
     let value = this.get("block");
     if (value === null || value.kind == ValueKind.NULL) {
@@ -141,88 +124,6 @@ export class DataRequest extends Entity {
       this.unset("block");
     } else {
       this.set("block", Value.fromBigInt(value as BigInt));
-    }
-  }
-}
-
-export class RelayProof extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save RelayProof entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save RelayProof entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("RelayProof", id.toString(), this);
-  }
-
-  static load(id: string): RelayProof | null {
-    return store.get("RelayProof", id) as RelayProof | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get seed(): string | null {
-    let value = this.get("seed");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set seed(value: string | null) {
-    if (value === null) {
-      this.unset("seed");
-    } else {
-      this.set("seed", Value.fromString(value as string));
-    }
-  }
-
-  get time(): BigInt | null {
-    let value = this.get("time");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set time(value: BigInt | null) {
-    if (value === null) {
-      this.unset("time");
-    } else {
-      this.set("time", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get status(): string | null {
-    let value = this.get("status");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set status(value: string | null) {
-    if (value === null) {
-      this.unset("status");
-    } else {
-      this.set("status", Value.fromString(value as string));
     }
   }
 }

@@ -1,22 +1,20 @@
 import {
-  VRFProvider,
-  RandomDataRelayed,
   RandomDataRequested
 } from "../../generated/VRFProvider/VRFProvider"
 
-import { RelayProof, DataRequest } from "../../generated/schema"
+import { DataRequest } from "../../generated/schema"
 
 
 export function handleRandomDataRequested(event: RandomDataRequested): void {
   // TaskKey is set to be ID
-  let taskKey = event.params.seed
+  let taskKey = event.params.taskKey.toHexString()
   let dataRequest = new DataRequest(taskKey)
+  dataRequest.sender  = event.params.caller
   dataRequest.seed = event.params.seed
   dataRequest.time = event.params.time
-  dataRequest.sender  = event.params.caller
   dataRequest.bounty = event.params.bounty
+  dataRequest.block = event.block.number
   
-  dataRequest.status = 'PENDING'
   dataRequest.save()
 }
 

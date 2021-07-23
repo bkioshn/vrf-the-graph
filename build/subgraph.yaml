@@ -25,23 +25,3 @@ dataSources:
         - event: RandomDataRequested(address,string,uint64,bytes32,uint256)
           handler: handleRandomDataRequested
       file: VRFProvider/VRFProvider.wasm
-  - kind: ethereum/contract
-    name: VRFConsumer
-    network: kovan
-    source:
-      address: "0x7c7c4a5332F4fa485EfcbE32b67a969334fD5465"
-      abi: VRFConsumer
-      startBlock: 25038970
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - DataRequest
-      abis:
-        - name: VRFConsumer
-          file: VRFConsumer/abis/VRFConsumer.json
-      eventHandlers:
-        - event: RandomDataRequested(address,string,uint64,uint256)
-          handler: handleRandomDataRequested
-      file: VRFConsumer/VRFConsumer.wasm

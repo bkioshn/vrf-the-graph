@@ -10,9 +10,7 @@ type DataRequest @entity {
   seed: String
   time: BigInt
   bounty: BigInt
-  status: Status
   block: BigInt
-  # param: String
 }
 
 # type RelayProof @entity{
